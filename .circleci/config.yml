@@ -116,7 +116,7 @@ jobs:
 
     parameters:
       openjdk_version:
-        type: integer
+        type: string
         default: "11.0"
       release_suffix:
         type: string
