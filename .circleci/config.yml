@@ -251,14 +251,14 @@ workflows:
 
       - unit_test_suite:
           name: unit_play210
-          openjdk_version: 11
+          openjdk_version: 17
           release_suffix: play210
           play_version: 2.10.6
           scala_version: '3.4'
 
       - unit_test_suite:
           name: unit_play3
-          openjdk_version: 11
+          openjdk_version: 17
           release_suffix: play30
           play_version: 3.0.2
           scala_version: '3.4'
