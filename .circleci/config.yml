@@ -82,15 +82,15 @@ commands:
 
                     V=`sbt -J-Dsbt.log.noformat=true 'show version' 2>&1 | tail -n 1 | cut -d ']' -f 2 | sed -e 's/[ \t]*//g'`
 
-                    if [ `echo "$V" | grep -- '-SNAPSHOT' | wc -l` -eq 0 ]; then
+                    if [ `echo "$V" | grep -cE 'SNAPSHOT$'` -eq 0 ]; then
                       S=`echo "$V" | perl -pe 's/([0-9]+)$/${\($1 + 1)}-SNAPSHOT/'`
                       echo "Cannot bump $V to $S"
                       echo "version in ThisBuild := \"$S\"" > version.sbt
                     fi
-                    
+
                     export PUBLISH_REPO_NAME="Sonatype Nexus Repository Manager"
-                    export PUBLISH_REPO_ID="oss.sonatype.org"
-                    export PUBLISH_REPO_URL="https://oss.sonatype.org/content/repositories/snapshots"
+                    export PUBLISH_REPO_ID="central.sonatype.com"
+                    export PUBLISH_REPO_URL="https://central.sonatype.com/repository/maven-snapshots/"
                     
                     if [ "x$PUBLISH_USER" = "x" -o "x$PUBLISH_PASS" = "x" ]; then
                       echo "Missing publication credentials"
